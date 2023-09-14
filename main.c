@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <fcntl.h>
+#include "main.h"
 
 typedef struct s_vars
 {
@@ -18,10 +19,13 @@ typedef struct s_vars
 int main(void)
 {
 	int cub_fd;
+	char	*line;
 
-	printf("hello");
-	cub_fd = open("./test.cub", O_RDONLY);
-	
+	// TODO: check file extension is cub
+	char *cub_str = "./test.cub";
+	cub_fd = open(cub_str, O_RDONLY);
+	line = get_next_line(cub_fd);
+	printf("line = %s\n", line);
 
 	return (0);
 }
