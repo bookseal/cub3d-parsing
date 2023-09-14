@@ -24,8 +24,13 @@ int main(void)
 	// TODO: check file extension is cub
 	char *cub_str = "./test.cub";
 	cub_fd = open(cub_str, O_RDONLY);
+	
 	line = get_next_line(cub_fd);
 	printf("line = %s\n", line);
-
+	while (line)
+	{
+		line = get_next_line(cub_fd);
+		printf("line = %s\n", line);
+	}
 	return (0);
 }
