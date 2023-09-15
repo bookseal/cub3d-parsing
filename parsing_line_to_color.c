@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:08:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 18:16:25 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/15 21:50:43 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int *line_to_rgb(char *line, t_parse *p)
 	char	**strs;
 	int *rgb;
 	int	i;
-	strs = ft_split(line, ',');
+	strs = ft_split(ft_strtrim(line, " "), ',');
 
 	rgb = malloc(3 * sizeof(int));
 	i = 0;

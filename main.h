@@ -30,6 +30,9 @@ typedef struct s_parse
 	int	done_world_map;
 } t_parse;
 
+int line_to_map(char *line, t_parse *p, t_vars *var);
+t_vars *parsing(char *cub_str);
+int	is_valid_cub(char *cub_str);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strtrim(char *s1, char *set);
 int line_to_texture(char *line, t_parse *p, t_vars *var);
