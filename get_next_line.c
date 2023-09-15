@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:34:14 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 16:52:04 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/15 18:09:56 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ char	*read_all(int fd, char *res)
 
 	if (!res)
 		res = ft_calloc(1, sizeof(char));
-	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buf = ft_calloc(1 + 1, sizeof(char));
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
-		bytes_read = read(fd, buf, BUFFER_SIZE);
+		bytes_read = read(fd, buf, 1);
 		if (bytes_read == -1)
 		{
 			free(buf);

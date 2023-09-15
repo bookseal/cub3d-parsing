@@ -1,97 +1,10 @@
 #include "main.h"
 
-typedef struct s_vars
-{
-	void		*mlx;
-	void		*win;
-	int			**textures;
-	int			*floor_rgb;
-	int			*ceiling_rgb;
-	char		*e_texture;
-	char		*w_texture;
-	char		*n_texture;
-	char		*s_texture;
-	int			**world_map;
-} t_vars;
-
-typedef struct s_parse
-{
-	int done_floor_rgb;
-	int	done_ceiling_rgb;
-	int	done_e_texture;
-	int	done_w_texture;
-	int	done_n_texture;
-	int	done_s_texture;
-	int	done_world_map;
-} t_parse;
-
-void	rgb_to_var(int *rgb, char is_f_c, t_vars *var)
-{
-	if (is_f_c == 'F')
-		var->floor_rgb = rgb;
-	else if (is_f_c == 'C')
-		var->ceiling_rgb = rgb;
-	else
-		return ;
-}
-
-int *line_to_rgb(char *line, t_parse *p, t_vars *var)
-{
-	char	**strs;
-	int *rgb;
-	int	i;
-	strs = ft_split(line, ',');
-
-	rgb = malloc(3 * sizeof(int));
-	i = 0;
-	while (strs[i])
-	{
-		if (i > 2)
-		{
-			// TODO: invalid format
-			exit(0);
-		}
-		rgb[i] = ft_atoi(strs[i]);
-		i++;
-	}
-	// TODO: free strs
-	return (rgb);
-}
-
-int line_to_color(char *line, t_parse *p, t_vars *var)
-{
-	int i = 2;
-	int comma_count = 0;
-	int	*rgb;
-
-	if (strncmp(line, "F ", 2) == 0)
-	{
-		if (p->done_floor_rgb)
-			return (1);
-		rgb = line_to_rgb(line + 2, p, var);
-		if (!rgb)
-			return (1);
-		rgb_to_var(rgb, 'F', var);
-		p->done_floor_rgb = 1;
-	}
-	else if (strncmp(line, "C ", 2) == 0)
-	{
-		if (p->done_ceiling_rgb)
-			return (1);
-		rgb = line_to_rgb(line + 2, p, var);
-		if (!rgb)
-			return (1);
-		rgb_to_var(rgb, 'C', var);
-		p->done_ceiling_rgb = 1;
-	}
-	return (0);
-}
 
 int line_to_elements(char *line, t_parse *p, t_vars *var)
 {
-	// TODO: texture part
-	// if (line_to_texture(line, p))
-	// 	return (1);
+	if (line_to_texture(line, p, var))
+		return (1);
 	if (line_to_color(line, p, var))
 		return (1);
 	// TODO: map part
@@ -139,15 +52,16 @@ int main(void)
 	p = malloc(sizeof(t_parse) * 1);
 	var = malloc(sizeof(t_vars) * 1);
 	line = get_next_line(cub_fd);
-	printf("line = %s\n", line);
+	printf("line = %s", line);
 	if (line_to_elements(line, p, var))
 		return (1);
 	while (line)
 	{
 		line = get_next_line(cub_fd);
-		printf("line = %s\n", line);
+		printf("line = %s", line);
 		if (line && line_to_elements(line, p, var))
 			return (1);
 	}
+	free(p);
 	return (0);
 }
