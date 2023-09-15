@@ -5,8 +5,8 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	int			**textures;
-	int			floor_rgb[3];
-	int			ceiling_rgb[3];
+	int			*floor_rgb;
+	int			*ceiling_rgb;
 	char		*e_texture;
 	char		*w_texture;
 	char		*n_texture;
@@ -27,26 +27,34 @@ typedef struct s_parse
 
 void	rgb_to_var(int *rgb, char is_f_c, t_vars *var)
 {
-	int i;
-	int	*rgb_arr;
-
-	if (is_f_c = 'F')
-		rgb_arr = var->floor_rgb;
+	if (is_f_c == 'F')
+		var->floor_rgb = rgb;
+	else if (is_f_c == 'C')
+		var->ceiling_rgb = rgb;
 	else
-		rgb_arr = var->ceiling_rgb;
-	i = 0;
-	while (i < 3)
-	{
-		rgb_arr[i] = rgb[i];
-		i++;
-	}
+		return ;
 }
 
 int *line_to_rgb(char *line, t_parse *p, t_vars *var)
 {
+	char	**strs;
 	int *rgb;
+	int	i;
+	strs = ft_split(line, ',');
 
-	
+	rgb = malloc(3 * sizeof(int));
+	i = 0;
+	while (strs[i])
+	{
+		if (i > 2)
+		{
+			// TODO: invalid format
+			exit(0);
+		}
+		rgb[i] = ft_atoi(strs[i]);
+		i++;
+	}
+	// TODO: free strs
 	return (rgb);
 }
 
@@ -132,13 +140,13 @@ int main(void)
 	var = malloc(sizeof(t_vars) * 1);
 	line = get_next_line(cub_fd);
 	printf("line = %s\n", line);
-	if (!line_to_elements(line, p, var))
+	if (line_to_elements(line, p, var))
 		return (1);
 	while (line)
 	{
 		line = get_next_line(cub_fd);
 		printf("line = %s\n", line);
-		if (!line_to_elements(line, p, var))
+		if (line && line_to_elements(line, p, var))
 			return (1);
 	}
 	return (0);

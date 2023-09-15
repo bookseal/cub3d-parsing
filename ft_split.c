@@ -6,11 +6,11 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:11:12 by gichlee           #+#    #+#             */
-/*   Updated: 2022/12/17 16:39:18 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:51:48 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include "main.h"
 
 static void	free_all(char **strs, size_t *idx_strs)
 {
