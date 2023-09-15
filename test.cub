@@ -2,3 +2,6 @@ F 220,100,0
 C 225,30,0
 
 NO ./no_texture
+SO ./so_texture
+WE ./we_texture
+EA ./ea_texture

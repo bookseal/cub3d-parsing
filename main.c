@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 int line_to_elements(char *line, t_parse *p, t_vars *var)
 {
 	if (line_to_texture(line, p, var))
@@ -49,8 +48,8 @@ int main(void)
 		cub_fd = open(cub_str, O_RDONLY);
 	else
 		return (1);
-	p = malloc(sizeof(t_parse) * 1);
-	var = malloc(sizeof(t_vars) * 1);
+	p = ft_calloc(1, sizeof(t_parse));
+	var = ft_calloc(1, sizeof(t_vars));
 	line = get_next_line(cub_fd);
 	printf("line = %s", line);
 	if (line_to_elements(line, p, var))
@@ -63,5 +62,6 @@ int main(void)
 			return (1);
 	}
 	free(p);
+	// TODO: check every element is filled
 	return (0);
 }
