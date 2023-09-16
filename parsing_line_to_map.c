@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 17:25:19 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 17:35:40 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ int is_first_row_of_map(char *line)
 
 int line_to_map(char *line, t_parse *p, t_vars *var)
 {
-	int **map;
-
+	t_parse_map *parse_map;
 	if (p->done_world_map)
 		return (0);
 	if (is_first_row_of_map(line))
 	{
+		parse_map = ft_lstnew(line);
+		// TODO: loop for append the last of the map
 		
 		// TODO: composed of only 6 possible characters
-		// TODO: loop for append the last of the map
+		
 		// TODO: composed of only 6 possible characters	
 		
 		// TODO: check NSEW

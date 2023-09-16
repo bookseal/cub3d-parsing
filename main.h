@@ -30,7 +30,23 @@ typedef struct s_parse
 	int	done_world_map;
 } t_parse;
 
+typedef struct s_parse_map
+{
+	char 				*line;
+	struct s_parse_map	*next;
+} t_parse_map;
+
+t_parse_map	*ft_lstnew(void *line);
+void	ft_lstadd_front(t_parse_map **lst, t_parse_map *new);
+int	ft_lstsize(t_parse_map *lst);
+t_parse_map	*ft_lstlast(t_parse_map *lst);
+void	ft_lstadd_back(t_parse_map **lst, t_parse_map *new);
+void	ft_lstdelone(t_parse_map *lst, void (*del)(void *));
+void	ft_lstclear(t_parse_map **lst, void (*del)(void *));
 int line_to_map(char *line, t_parse *p, t_vars *var);
+void	ft_lstiter(t_parse_map *lst, void (*f)(void *));
+t_parse_map	*ft_lstmap(t_parse_map *lst, void *(*f)(void *), void (*del)(void *));
+
 t_vars *parsing(char *cub_str);
 int	is_valid_cub(char *cub_str);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
