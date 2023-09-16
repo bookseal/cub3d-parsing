@@ -38,6 +38,7 @@ typedef struct s_parse
 	char	done_map_start_direction;
 	t_parse_map *map_lst;
 	char	**map_arrs;
+	int		map_size;
 } t_parse;
 
 int is_surrounded_with_wall(t_parse *p);
