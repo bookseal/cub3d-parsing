@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 19:55:25 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 20:16:02 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int is_first_row_of_map(char *line)
 	return (0);
 }
 
-int is_only_one_NSEW(t_parse *p, t_parse_map *parse_map)
+int is_only_one_NSEW(t_parse *p)
 {
 	const char nsew[5] = {'N', 'S', 'E', 'W'};
 	t_parse_map *map_line;
 	int	i;
 	
 	p->done_map_start_direction = 0;
-	map_line = parse_map;
+	map_line = p->map_lst;
 	while (map_line)
 	{
 		i = 0;
@@ -74,30 +74,28 @@ int is_only_one_NSEW(t_parse *p, t_parse_map *parse_map)
 		}
 		map_line = map_line->next;
 	}
-	return (0);
+	return (1);
 }
 
 int line_to_map(char *line, t_parse *p, t_vars *var)
 {
-	t_parse_map *parse_map;
-	
 	if (p->done_world_map)
 		return (0);
 	if (is_first_row_of_map(line))
 	{
-		parse_map = ft_lstnew(line);
+		p->map_lst = ft_lstnew(line);
 		while (line)
 		{
 			line = get_next_line(p->cub_fd);
 			if (line && *line == '\n')
 				 break ;
-			ft_lstadd_back(&parse_map, ft_lstnew(line));
+			ft_lstadd_back(&(p->map_lst), ft_lstnew(line));
 		}
-		if (!is_valid_with_6_characters(parse_map))
+		if (!is_valid_with_6_characters(p->map_lst))
 			return (1);
-		if (!is_only_one_NSEW(p, parse_map))
+		if (!is_only_one_NSEW(p))
 			return (1);
-		if (!is_surrounded_with_wall(parse_map))
+		if (!is_surrounded_with_wall(p))
 			return (1);
 		// TODO: space
 		p->done_world_map = 1;

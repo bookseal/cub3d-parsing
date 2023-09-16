@@ -19,6 +19,12 @@ typedef struct s_vars
 	int			**world_map;
 } t_vars;
 
+typedef struct s_parse_map
+{
+	char 				*line;
+	struct s_parse_map	*next;
+} t_parse_map;
+
 typedef struct s_parse
 {
 	int		cub_fd;
@@ -30,14 +36,11 @@ typedef struct s_parse
 	int		done_s_texture;
 	int		done_world_map;
 	char	done_map_start_direction;
+	t_parse_map *map_lst;
+	char	**map_arrs;
 } t_parse;
 
-typedef struct s_parse_map
-{
-	char 				*line;
-	struct s_parse_map	*next;
-} t_parse_map;
-
+int is_surrounded_with_wall(t_parse *p);
 char	*ft_strchr(const char *s, int c);
 t_parse_map	*ft_lstnew(char *line);
 void	ft_lstadd_front(t_parse_map **lst, t_parse_map *new);
