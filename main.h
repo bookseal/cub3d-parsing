@@ -21,18 +21,15 @@ typedef struct s_vars
 
 typedef struct s_parse
 {
-	int	cub_fd;
-	int done_floor_rgb;
-	int	done_ceiling_rgb;
-	int	done_e_texture;
-	int	done_w_texture;
-	int	done_n_texture;
-	int	done_s_texture;
-	int	done_world_map;
-	int	done_map_e;
-	int	done_map_w;
-	int	done_map_n;
-	int	done_map_s;
+	int		cub_fd;
+	int 	done_floor_rgb;
+	int		done_ceiling_rgb;
+	int		done_e_texture;
+	int		done_w_texture;
+	int		done_n_texture;
+	int		done_s_texture;
+	int		done_world_map;
+	char	done_map_start_direction;
 } t_parse;
 
 typedef struct s_parse_map

@@ -6,18 +6,17 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 19:43:23 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 19:54:35 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int is_valid_with_6_characters(t_parse *p, t_parse_map *parse_map)
+int is_valid_with_6_characters(t_parse_map *parse_map)
 {
 	t_parse_map *map_line;
 	const char six_chars[8] = {' ', '0', '1', 'N', 'S', 'E', 'W' , 0};
 	int	i;
-	int j;
 	int is_other;
 	
 	map_line = parse_map;
@@ -52,6 +51,32 @@ int is_first_row_of_map(char *line)
 	return (0);
 }
 
+int is_only_one_NSEW(t_parse *p, t_parse_map *parse_map)
+{
+	const char nsew[5] = {'N', 'S', 'E', 'W'};
+	t_parse_map *map_line;
+	int	i;
+	
+	p->done_map_start_direction = 0;
+	map_line = parse_map;
+	while (map_line)
+	{
+		i = 0;
+		while ((map_line->line)[i])
+		{
+			if (ft_strchr(nsew, (map_line->line)[i]))
+			{
+				if (p->done_map_start_direction)
+					return (0);
+				p->done_map_start_direction = *(ft_strchr(nsew, (map_line->line)[i]));
+			}
+			i++;
+		}
+		map_line = map_line->next;
+	}
+	return (0);
+}
+
 int line_to_map(char *line, t_parse *p, t_vars *var)
 {
 	t_parse_map *parse_map;
@@ -68,11 +93,13 @@ int line_to_map(char *line, t_parse *p, t_vars *var)
 				 break ;
 			ft_lstadd_back(&parse_map, ft_lstnew(line));
 		}
-		if (!is_valid_with_6_characters(p, parse_map))
+		if (!is_valid_with_6_characters(parse_map))
 			return (1);
-		// TODO: check NSEW
+		if (!is_only_one_NSEW(p, parse_map))
+			return (1);
 		// TODO: check wall surrounded 위, 오른, 아래, 왼쪽이 전부 1인가
 		// TODO: space
+		p->done_world_map = 1;
 	}
 	return (0);
 }
