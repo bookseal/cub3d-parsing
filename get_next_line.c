@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:34:14 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 18:09:56 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 18:44:54 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	*ft_popline(char *buf)
 		line[idx] = buf[idx];
 		idx++;
 	}
-	if (buf[idx] && buf[idx] == '\n')
-		line[idx] = '\n';
+	if (buf[0] == '\n')
+		line[0] = '\n';
 	return (line);
 }
 

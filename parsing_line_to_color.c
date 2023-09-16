@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:08:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 21:50:43 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 19:37:56 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int *line_to_rgb(char *line, t_parse *p)
 			exit(0);
 		}
 		rgb[i] = ft_atoi(strs[i]);
+		// TODO: range
+		// TODO: no number
 		i++;
 	}
 	// TODO: free strs

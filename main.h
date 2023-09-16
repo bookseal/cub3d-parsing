@@ -29,6 +29,10 @@ typedef struct s_parse
 	int	done_n_texture;
 	int	done_s_texture;
 	int	done_world_map;
+	int	done_map_e;
+	int	done_map_w;
+	int	done_map_n;
+	int	done_map_s;
 } t_parse;
 
 typedef struct s_parse_map
@@ -37,6 +41,7 @@ typedef struct s_parse_map
 	struct s_parse_map	*next;
 } t_parse_map;
 
+char	*ft_strchr(const char *s, int c);
 t_parse_map	*ft_lstnew(char *line);
 void	ft_lstadd_front(t_parse_map **lst, t_parse_map *new);
 int	ft_lstsize(t_parse_map *lst);
