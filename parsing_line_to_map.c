@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 19:54:35 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 19:55:25 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int line_to_map(char *line, t_parse *p, t_vars *var)
 			return (1);
 		if (!is_only_one_NSEW(p, parse_map))
 			return (1);
-		// TODO: check wall surrounded 위, 오른, 아래, 왼쪽이 전부 1인가
+		if (!is_surrounded_with_wall(parse_map))
+			return (1);
 		// TODO: space
 		p->done_world_map = 1;
 	}
