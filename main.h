@@ -21,6 +21,7 @@ typedef struct s_vars
 
 typedef struct s_parse
 {
+	int	cub_fd;
 	int done_floor_rgb;
 	int	done_ceiling_rgb;
 	int	done_e_texture;
@@ -36,7 +37,7 @@ typedef struct s_parse_map
 	struct s_parse_map	*next;
 } t_parse_map;
 
-t_parse_map	*ft_lstnew(void *line);
+t_parse_map	*ft_lstnew(char *line);
 void	ft_lstadd_front(t_parse_map **lst, t_parse_map *new);
 int	ft_lstsize(t_parse_map *lst);
 t_parse_map	*ft_lstlast(t_parse_map *lst);

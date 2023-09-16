@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:54:15 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 17:20:34 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 17:40:01 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_vars *parsing(char *cub_str)
 	else
 		return (0);
 	p = ft_calloc(1, sizeof(t_parse));
+	p->cub_fd = cub_fd;
 	var = ft_calloc(1, sizeof(t_vars));
 	line = get_next_line(cub_fd);
 	printf("line = %s", line);
