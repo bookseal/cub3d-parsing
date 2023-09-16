@@ -6,21 +6,38 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 21:52:47 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/16 17:25:19 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+int is_first_row_of_map(char *line)
+{
+	char *trimmed_line;
+	
+	trimmed_line = ft_strtrim(line, " ");
+	if (*trimmed_line == '1')
+		return (1);
+	return (0);
+}
+
 int line_to_map(char *line, t_parse *p, t_vars *var)
 {
-	// TODO: check the initial line of the map
-	// TODO: composed of only 6 possible characters
-	// TODO: loop for append the last of the map
-	// TODO: composed of only 6 possible characters	
-	
-	// TODO: check NSEW
-	// TODO: check wall surrounded
-	// TODO: check first and last row surrounded by wall
+	int **map;
+
+	if (p->done_world_map)
+		return (0);
+	if (is_first_row_of_map(line))
+	{
+		
+		// TODO: composed of only 6 possible characters
+		// TODO: loop for append the last of the map
+		// TODO: composed of only 6 possible characters	
+		
+		// TODO: check NSEW
+		// TODO: check wall surrounded
+		// TODO: check first and last row surrounded by wall
+	}
 	return (0);
 }
