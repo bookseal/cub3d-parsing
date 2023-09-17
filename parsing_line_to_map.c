@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 20:16:02 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 15:59:00 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int line_to_map(char *line, t_parse *p, t_vars *var)
 			return (1);
 		if (!is_surrounded_with_wall(p))
 			return (1);
-		// TODO: space
+		if (!is_space_surrounded_with_wall(p))
+			return (1);
 		p->done_world_map = 1;
 	}
 	return (0);

@@ -41,6 +41,7 @@ typedef struct s_parse
 	int		map_size;
 } t_parse;
 
+int is_space_surrounded_with_wall(t_parse *p);
 int is_surrounded_with_wall(t_parse *p);
 char	*ft_strchr(const char *s, int c);
 t_parse_map	*ft_lstnew(char *line);

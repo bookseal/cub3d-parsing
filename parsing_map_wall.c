@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:56:20 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/17 15:55:53 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:08:11 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,50 @@ int is_surrounded_with_wall(t_parse *p)
 		return (0);
 	if (!is_all_wall_from_south(p))
 		return (0);
+	return (1);
+}
+
+int is_valid_space(t_parse *p, int i, int j)
+{
+	char c;
+
+	c = (p->map_arrs)[i][j + 1];
+	if (!(c == ' ' || c == '1'))
+		return (0);
+	c = (p->map_arrs)[i][j - 1];
+	if (!(c == ' ' || c == '1'))
+		return (0);
+	c = (p->map_arrs)[i + 1][j];
+	if (!(c == ' ' || c == '1'))
+		return (0);
+	c = (p->map_arrs)[i - 1][j];
+	if (!(c == ' ' || c == '1'))
+		return (0);
+	
+	return (1);
+}
+
+int is_space_surrounded_with_wall(t_parse *p)
+{
+	int 	i;
+	int		j;
+	char	c;
+	
+	i = 1;
+	while (i < p->map_size - 1)
+	{
+		j = 1;
+		while (j < p->map_size - 1)
+		{
+			c = (p->map_arrs)[i][j];
+			if (c == ' ')
+			{
+				if (!is_valid_space(p, i, j))
+					return (0);
+			}
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
