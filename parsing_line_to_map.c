@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 21:44:45 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/17 15:59:00 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:41:19 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int is_only_one_NSEW(t_parse *p)
 	const char nsew[5] = {'N', 'S', 'E', 'W'};
 	t_parse_map *map_line;
 	int	i;
+	int pos_x;
+	int pox_y;
 	
 	p->done_map_start_direction = 0;
 	map_line = p->map_lst;
@@ -66,6 +68,9 @@ int is_only_one_NSEW(t_parse *p)
 		{
 			if (ft_strchr(nsew, (map_line->line)[i]))
 			{
+				p->player_pos_x = (int)(ft_strchr(nsew, (map_line->line)[i]) - (map_line->line)[i]);
+				p->player_pos_y = i;
+				p->player_nswe = *ft_strchr(nsew, (map_line->line)[i]);
 				if (p->done_map_start_direction)
 					return (0);
 				p->done_map_start_direction = *(ft_strchr(nsew, (map_line->line)[i]));
@@ -95,6 +100,9 @@ int line_to_map(char *line, t_parse *p, t_vars *var)
 			return (1);
 		if (!is_only_one_NSEW(p))
 			return (1);
+		var->player_pos_x = p->player_pos_x;
+		var->player_pos_y = p->player_pos_y;
+		var->player_nswe = p->player_nswe;
 		if (!is_surrounded_with_wall(p))
 			return (1);
 		if (!is_space_surrounded_with_wall(p))

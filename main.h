@@ -42,6 +42,9 @@ typedef struct s_parse
 	t_parse_map *map_lst;
 	char	**map_arrs;
 	int		map_size;
+	int		player_pos_x;
+	int		player_pos_y;
+	char	player_nswe;
 } t_parse;
 
 int is_space_surrounded_with_wall(t_parse *p);
