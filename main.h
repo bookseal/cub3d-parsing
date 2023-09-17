@@ -10,13 +10,16 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	int			**textures;
-	int			*floor_rgb;
-	int			*ceiling_rgb;
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
 	char		*e_texture;
 	char		*w_texture;
 	char		*n_texture;
 	char		*s_texture;
 	int			**world_map;
+	int			player_pos_x;
+	int			player_pos_y;
+	char		player_nswe;
 } t_vars;
 
 typedef struct s_parse_map
@@ -61,7 +64,7 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strtrim(char *s1, char *set);
 int line_to_texture(char *line, t_parse *p, t_vars *var);
 int line_to_color(char *line, t_parse *p, t_vars *var);
-int	ft_atoi(const char *str);
+int	ft_atoi(const char *str, int *error);
 char	**ft_split(char const *s, char c);
 char	*get_next_line(int fd);
 char	*read_all(int fd, char *res);

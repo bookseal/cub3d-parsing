@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:10:48 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 21:39:31 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:13:57 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char *line_to_path(char *line, t_parse *p)
 {
 	char *path;
 
-	path = ft_strtrim(line, " \n\t");
+	path = ft_strtrim(line, " ");
 	if (access(path, F_OK) != -1)
 		return path;  // 파일이 존재하면 경로 반환
 	return (0);

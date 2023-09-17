@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:10:38 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/15 17:13:14 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:20:05 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*atoa_removed_spaces_sign(char *str, int *sign)
 	return (str);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int *error)
 {
 	char		*num_str;
 	int			sign;
@@ -66,7 +66,10 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	num_str = atoa_removed_spaces_sign((char *)str, &sign);
 	if (num_str == 0)
-		exit(0);
+	{
+		*error = 1;
+		return (0);
+	}
 	res = 0;
 	while (*num_str != '\0' && ft_isdigit(*num_str))
 	{
