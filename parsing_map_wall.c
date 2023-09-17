@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:56:20 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/17 15:52:15 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 15:55:53 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,52 @@ int	is_all_wall_from_east(t_parse *p)
 	return (1);
 }
 
+int	is_all_wall_from_north(t_parse *p)
+{
+	int i;
+	int	j;
+	
+	i = 0;
+	while (i < p->map_size)
+	{
+		j = 0;
+		while (j < p->map_size)
+		{
+			if ((p->map_arrs)[j][i] == ' ')
+				j++;
+			else if ((p->map_arrs)[j][i] == '1')
+				break ;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	is_all_wall_from_south(t_parse *p)
+{
+	int i;
+	int	j;
+	
+	i = 0;
+	while (i < p->map_size)
+	{
+		j = p->map_size - 1;
+		while (j >= 0)
+		{
+			if ((p->map_arrs)[j][i] == ' ')
+				j--;
+			else if ((p->map_arrs)[j][i] == '1')
+				break ;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int is_surrounded_with_wall(t_parse *p)
 {
 	p->map_arrs = map_lst_to_map_arrs(p);
@@ -141,7 +187,9 @@ int is_surrounded_with_wall(t_parse *p)
 		return (0);
 	if (!is_all_wall_from_east(p))
 		return (0);
-	// TODO: check from the north
-	// TODO: check from the south
+	if (!is_all_wall_from_north(p))
+		return (0);
+	if (!is_all_wall_from_south(p))
+		return (0);
 	return (1);
 }
