@@ -6,7 +6,7 @@
 /*   By: gichlee <gichlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:56:20 by gichlee           #+#    #+#             */
-/*   Updated: 2023/09/16 20:45:15 by gichlee          ###   ########.fr       */
+/*   Updated: 2023/09/17 15:45:49 by gichlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,38 @@ char **map_lst_to_map_arrs(t_parse *p)
 	return (p->map_arrs);
 }
 
+int	is_all_wall_from_west(t_parse *p)
+{
+	int i;
+	int	j;
+	
+	i = 0;
+	while (i < p->map_size)
+	{
+		printf("%s\n", (p->map_arrs)[i]);
+		j = 0;
+		while (j < p->map_size)
+		{
+			if ((p->map_arrs)[i][j] == ' ')
+				j++;
+			else if ((p->map_arrs)[i][j] == '1')
+				break ;
+			else
+				return (0);
+		}
+		i++;
+	}
+	
+	return (1);
+}
+
 int is_surrounded_with_wall(t_parse *p)
 {
 	p->map_arrs = map_lst_to_map_arrs(p);
-	// TODO: check from the up
-	// TODO: check from the bottom
-	// TODO: check from the left
-	// TODO: check from the right
+	if (!is_all_wall_from_west(p))
+		return (0);
+	// TODO: check from the east
+	// TODO: check from the north
+	// TODO: check from the south
 	return (1);
 }

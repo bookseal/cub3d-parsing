@@ -7,6 +7,9 @@ int main(void)
 	char *cub_str = "./test.cub";
 	var = parsing(cub_str);
 	if (!var)
+	{
+		printf("Error\n");
 		exit(1);
+	}
 	return (0);
 }
